@@ -5,7 +5,7 @@
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 AB=true
-AONLY=true
+AONLY=false
 MOUNTED=false
 CLEAN=false
 
