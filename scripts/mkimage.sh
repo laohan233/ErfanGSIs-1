@@ -94,6 +94,11 @@ sudo mkdir -p "$systemdir/firmware"
 sudo mkdir -p "$systemdir/dsp"
 sudo mkdir -p "$systemdir/cache"
 
+echo " " >> "$systemdir/init.rc"
+echo "on boot" >> "$systemdir/init.rc"
+echo "    chmod 0660 /dev/nxp_smartpa_dev" >> "$systemdir/init.rc"
+echo "    chown media media /dev/nxp_smartpa_dev" >> "$systemdir/init.rc"
+
 if [ "$5" == "--old" ]; then
     if [ "$outputtype" == "Aonly" ]; then
         sudo $make_ext4fs -T 0 -S $fcontexts -l $syssize -L system -a system -s "$output" "$systemdir/system"
