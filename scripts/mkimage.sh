@@ -44,6 +44,7 @@ done
 if [[ -f "$tempdir/file_contexts" ]]; then
     echo "/firmware(/.*)?         u:object_r:firmware_file:s0" >> "$tempdir/file_contexts"
     echo "/bt_firmware(/.*)?      u:object_r:bt_firmware_file:s0" >> "$tempdir/file_contexts"
+    echo "/sec_storage(/.*)?      u:object_r:teecd_data_file:s0" >> "$tempdir/file_contexts"
     echo "/persist(/.*)?          u:object_r:mnt_vendor_file:s0" >> "$tempdir/file_contexts"
     echo "/dsp                    u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     echo "/oem                    u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
@@ -82,10 +83,12 @@ if [[ -f "$tempdir/file_contexts" ]]; then
 fi
 sudo rm -rf "$systemdir/persist"
 sudo rm -rf "$systemdir/bt_firmware"
+sudo rm -rf "$systemdir/sec_storage"
 sudo rm -rf "$systemdir/firmware"
 sudo rm -rf "$systemdir/dsp"
 sudo rm -rf "$systemdir/cache"
 sudo mkdir -p "$systemdir/bt_firmware"
+sudo mkdir -p "$systemdir/sec_storage"
 sudo mkdir -p "$systemdir/persist"
 sudo mkdir -p "$systemdir/firmware"
 sudo mkdir -p "$systemdir/dsp"

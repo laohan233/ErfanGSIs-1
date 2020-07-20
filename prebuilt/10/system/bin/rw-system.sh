@@ -382,3 +382,12 @@ if getprop ro.vendor.build.fingerprint | grep -qiE '^samsung/' && [ "$vndk" -ge 
 fi
 
 setprop ro.product.first_api_level "$vndk"
+
+if [ -c /dev/dsm ];then
+	chown system:system /dev/dsm
+	chmod 0660 /dev/dsm
+	mkdir -p /data/sec_storage_data
+	chown system:system /data/sec_storage_data
+	chcon u:object_r:teecd_data_file_system:s0 /data/sec_storage_data
+	mount /data/sec_storage_data /sec_storage
+fi
